@@ -1,7 +1,7 @@
 /**
  * A class of worms with specific name, location, orientation, radius, 
  * mass and action points
- *  kaas 
+ *  
  * @author Wolf Nuyts and Arnout Verboven
  *
  */
