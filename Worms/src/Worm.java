@@ -16,37 +16,40 @@ import be.kuleuven.cs.som.annotate.*;
  */
 public class Worm {
 	
+	/**
+	 * 
+	 */
 	public Worm() {
 		// eerst massa voor getmaximumactionpoints
 		setActionPoints(getMaximumActionPoints());
 	}
 	
 	/**
-	 * Variable registering the x-coordinate of the worm in meters
+	 * Variable registering the x-coordinate of the worm in meters.
 	 */
 	private double x;
 	
 	/**
-	 * Variable registering the y-coordinate of the worm in meters
+	 * Variable registering the y-coordinate of the worm in meters.
 	 */
 	private double y;
 	
 	/**
-	 * returns the x-coordinate of the worm
+	 * Returns the x-coordinate of the worm.
 	 */
 	@Basic
 	public double getX() {
 		return x;
 	}
 	/**
-	 * returns the y-coordinate of the worm
+	 * Returns the y-coordinate of the worm.
 	 */
 	@Basic
 	public double getY() {
 		return y;
 	}
 	/**
-	 * returns an array with the x- and y-coordinate of the worm
+	 * Returns an array with the x- and y-coordinate of the worm.
 	 * @return ...
 	 * 		| result == {getX(),getY()}
 	 */
@@ -55,7 +58,7 @@ public class Worm {
 		return loc;
 	}
 	/**
-	 * sets the x-coordinate of the worm
+	 * Sets the x-coordinate of the worm.
 	 * @param x
 	 * 		the new x-coordinate of the worm
 	 * @post ...
@@ -66,7 +69,7 @@ public class Worm {
 	}
 	
 	/**
-	 * sets the y-coordinate of the worm
+	 * Sets the y-coordinate of the worm.
 	 * @param y
 	 * 		the new y-coordinate of the worm
 	 *  @post ...
@@ -77,19 +80,19 @@ public class Worm {
 	}
 	
 	/**
-	 * Variable registering the orientation of the worm as an angle in radians
+	 * Variable registering the orientation of the worm as an angle in radians.
 	 */
 	private double orientation;
 	
 	/**
-	 * returns the orientation of the worm
+	 * Returns the orientation of the worm.
 	 */
 	@Basic
 	public double getOrientation() {
 		return orientation;
 	}
 	/**
-	 * sets the orientation of the worm
+	 * Sets the orientation of the worm.
 	 * @param orientation
 	 * 		the new orientation of the worm
 	 * @pre ...
@@ -102,7 +105,7 @@ public class Worm {
 	}
 	
 	/**
-	 * checks if orientation is valid
+	 * Checks if orientation is valid.
 	 * @param orientation
 	 * 		the orientation of the worm
 	 * @return ...
@@ -113,17 +116,17 @@ public class Worm {
 	}
 	
 	/**
-	 * Variabele registering the radius of the worm in meters
+	 * Variable registering the radius of the worm in meters.
 	 */
 	private double radius;
 	
 	/**
-	 * Variable registering the minimum radius of the worm in meters
+	 * Variable registering the minimum radius of the worm in meters.
 	 */
 	private final double minRadius = 0.25; //0.25 kan later veranderen
 	
 	/**
-	 * returns the minimum radius of the worm
+	 * Returns the minimum radius of the worm.
 	 */
 	@Basic
 	@Immutable
@@ -132,7 +135,7 @@ public class Worm {
 	}
 	
 	/**
-	 * returns the radius of the worm
+	 * Returns the radius of the worm.
 	 */
 	@Basic
 	public double getRadius() {
@@ -140,7 +143,7 @@ public class Worm {
 	}
 	
 	/**
-	 * sets the radius of the worm
+	 * Sets the radius of the worm.
 	 * @param radius
 	 * 		the new radius of the worm
 	 * @post ...
@@ -156,7 +159,7 @@ public class Worm {
 	}
 	
 	/**
-	 *  checks if radius is valid
+	 * Checks if radius is valid.
 	 * @param radius
 	 * 		the radius of the worm
 	 * @return ...
@@ -167,12 +170,12 @@ public class Worm {
 	}
 	
 	/**
-	 * Variable registering the density of the worm in Kg per m³
+	 * Variable registering the density of the worm in kg/m³.
 	 */
 	private final double density = 1062;
 	
 	/**
-	 * returns the mass of the worm in kg
+	 * Returns the mass of the worm in kg.
 	 * @return ...
 	 * 		| result == density * 4/3*Math.PI * Math.pow(radius, 3.0)
 	 */
@@ -181,7 +184,7 @@ public class Worm {
 	}
 	
 	/**
-	 * returns the maximum amount of action points
+	 * Returns the maximum amount of action points.
 	 * @return ...
 	 * 		| result == Math.round(getMass())
 	 */
@@ -190,12 +193,12 @@ public class Worm {
 	}
 	
 	/**
-	 * Variable registering the amount of action points of the worm
+	 * Variable registering the amount of action points of the worm.
 	 */
 	private int actionPoints;
 	
 	/**
-	 *returns the amoiunt of action points of the worm
+	 * Returns the amount of action points of the worm.
 	 */
 	@Basic
 	public int getActionPoints() {
@@ -203,7 +206,7 @@ public class Worm {
 	}
 	
 	/**
-	 * sets the amount of action points of the worm
+	 * Sets the amount of action points of the worm.
 	 * @param actionPoints
 	 * 		the new amount of action points of the worm
 	 * @post ...
@@ -226,12 +229,12 @@ public class Worm {
 	}
 	
 	/**
-	 * Variable registering the name of the worm
+	 * Variable registering the name of the worm.
 	 */
 	private String name;
 	
 	/**
-	 *returns the name of the worm
+	 * Returns the name of the worm.
 	 */
 	@Basic
 	public String getName() {
@@ -239,7 +242,7 @@ public class Worm {
 	}
 	
 	/**
-	 * sets the name of the worm
+	 * Sets the name of the worm.
 	 * @param name
 	 * 		the new name of the worm
 	 * @post ...
@@ -254,7 +257,7 @@ public class Worm {
 	}
 	
 	/**
-	 * checks if the name is valid
+	 * Checks if the name is valid.
 	 * @param name
 	 * 		the name of the worm
 	 * @return ...
@@ -274,7 +277,7 @@ public class Worm {
 	}
 	
 	/**
-	 * checks if the character is valid
+	 * Checks if the character is valid.
 	 * @param c
 	 * 		the checked character
 	 * @return ...
