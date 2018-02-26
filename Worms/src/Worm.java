@@ -25,38 +25,13 @@ public class Worm {
 	}
 	
 	/**
-	 * Variable registering the x-coordinate of the worm in meters.
-	 */
-	private double x;
-	
-	/**
-	 * Variable registering the y-coordinate of the worm in meters.
-	 */
-	private double y;
-	
-	/**
 	 * Returns the x-coordinate of the worm.
 	 */
 	@Basic
 	public double getX() {
 		return x;
 	}
-	/**
-	 * Returns the y-coordinate of the worm.
-	 */
-	@Basic
-	public double getY() {
-		return y;
-	}
-	/**
-	 * Returns an array with the x- and y-coordinate of the worm.
-	 * @return ...
-	 * 		| result == {getX(),getY()}
-	 */
-	public double[] getLocation() {
-		double[] loc = {getX(),getY()};
-		return loc;
-	}
+	
 	/**
 	 * Sets the x-coordinate of the worm.
 	 * @param x
@@ -66,6 +41,19 @@ public class Worm {
 	 */
 	public void setX(double x) {
 		this.x = x;
+	}
+	
+	/**
+	 * Variable registering the x-coordinate of the worm in meters.
+	 */
+	private double x;
+	
+	/**
+	 * Returns the y-coordinate of the worm.
+	 */
+	@Basic
+	public double getY() {
+		return y;
 	}
 	
 	/**
@@ -80,9 +68,30 @@ public class Worm {
 	}
 	
 	/**
-	 * Variable registering the orientation of the worm as an angle in radians.
+	 * Variable registering the y-coordinate of the worm in meters.
 	 */
-	private double orientation;
+	private double y;
+	
+	/**
+	 * Returns an array with the x- and y-coordinate of the worm.
+	 * @return ...
+	 * 		| result == {getX(),getY()}
+	 */
+	public double[] getLocation() {
+		double[] loc = {getX(),getY()};
+		return loc;
+	}
+	
+	/**
+	 * Checks if orientation is valid.
+	 * @param orientation
+	 * 		the orientation of the worm
+	 * @return ...
+	 * 		| result == (0 <= orientation < 2*Math.PI)
+	 */
+	public static boolean isValidOrientation(double orientation) {
+		return (0 <= orientation) && (orientation < 2*Math.PI);
+	}
 	
 	/**
 	 * Returns the orientation of the worm.
@@ -105,25 +114,20 @@ public class Worm {
 	}
 	
 	/**
-	 * Checks if orientation is valid.
-	 * @param orientation
-	 * 		the orientation of the worm
+	 * Variable registering the orientation of the worm as an angle in radians.
+	 */
+	private double orientation;
+	
+	/**
+	 * Checks if radius is valid.
+	 * @param radius
+	 * 		the radius of the worm
 	 * @return ...
-	 * 		| result == (0 <= orientation < 2*Math.PI)
+	 * 		| radius >= getMinRadius()
 	 */
-	public static boolean isValidOrientation(double orientation) {
-		return (0 <= orientation) && (orientation < 2*Math.PI);
+	public boolean isValidRadius(double radius) {
+		return (radius >= getMinRadius());
 	}
-	
-	/**
-	 * Variable registering the radius of the worm in meters.
-	 */
-	private double radius;
-	
-	/**
-	 * Variable registering the minimum radius of the worm in meters.
-	 */
-	private final double minRadius = 0.25; //0.25 kan later veranderen
 	
 	/**
 	 * Returns the minimum radius of the worm.
@@ -159,20 +163,14 @@ public class Worm {
 	}
 	
 	/**
-	 * Checks if radius is valid.
-	 * @param radius
-	 * 		the radius of the worm
-	 * @return ...
-	 * 		| radius >= getMinRadius()
+	 * Variable registering the radius of the worm in meters.
 	 */
-	public boolean isValidRadius(double radius) {
-		return (radius >= getMinRadius());
-	}
+	private double radius;
 	
 	/**
-	 * Variable registering the density of the worm in kg/m³.
+	 * Variable registering the minimum radius of the worm in meters.
 	 */
-	private final double density = 1062;
+	private final double minRadius = 0.25; //0.25 kan later veranderen
 	
 	/**
 	 * Returns the mass of the worm in kg.
@@ -184,6 +182,11 @@ public class Worm {
 	}
 	
 	/**
+	 * Variable registering the density of the worm in kg/m³.
+	 */
+	private final double density = 1062;
+	
+	/**
 	 * Returns the maximum amount of action points.
 	 * @return ...
 	 * 		| result == Math.round(getMass())
@@ -191,11 +194,6 @@ public class Worm {
 	public int getMaximumActionPoints() {
 		return (int) Math.round(getMass());
 	}
-	
-	/**
-	 * Variable registering the amount of action points of the worm.
-	 */
-	private int actionPoints;
 	
 	/**
 	 * Returns the amount of action points of the worm.
@@ -229,9 +227,39 @@ public class Worm {
 	}
 	
 	/**
-	 * Variable registering the name of the worm.
+	 * Variable registering the amount of action points of the worm.
 	 */
-	private String name;
+	private int actionPoints;
+	
+	/**
+	 * Checks if the name is valid.
+	 * @param name
+	 * 		the name of the worm
+	 * @return ...
+	 * 		| result == ((name.length() >= 2) && (Character.isUpperCase(name.charAt(0)))
+				&& (validCharacters))
+	 */
+	public static boolean isValidName(String name) {
+		boolean validCharacters = true;
+		for (int i = 0; i<name.length(); i++) {
+			if (!isValidCharacter(name.charAt(i)))
+				validCharacters = false;
+		}
+						
+		return ((name.length() >= 2) && (Character.isUpperCase(name.charAt(0)))
+				&& (validCharacters));
+	}
+	
+	/**
+	 * Checks if the character is valid.
+	 * @param c
+	 * 		the checked character
+	 * @return ...
+	 * 		| result == ((Character.isLetter(c)) || (c == ' ') || (c == '\'') || (c == '"'))
+	 */
+	public static boolean isValidCharacter(char c) {
+		return ((Character.isLetter(c)) || (c == ' ') || (c == '\'') || (c == '"'));
+	}
 	
 	/**
 	 * Returns the name of the worm.
@@ -257,35 +285,9 @@ public class Worm {
 	}
 	
 	/**
-	 * Checks if the name is valid.
-	 * @param name
-	 * 		the name of the worm
-	 * @return ...
-	 * 		| result == ((name.length() >= 2) && (Character.isUpperCase(name.charAt(0)))
-				&& (validCharacters))
+	 * Variable registering the name of the worm.
 	 */
-	public static boolean isValidName(String name) {
-		boolean validCharacters = true;
-		for (int i = 0; i<name.length(); i++) {
-			if (!isValidCharacter(name.charAt(i)))
-				validCharacters = false;
-		}
-						
-		return ((name.length() >= 2) && (Character.isUpperCase(name.charAt(0)))
-				&& (validCharacters));
-		
-	}
-	
-	/**
-	 * Checks if the character is valid.
-	 * @param c
-	 * 		the checked character
-	 * @return ...
-	 * 		| result == ((Character.isLetter(c)) || (c == ' ') || (c == '\'') || (c == '"'))
-	 */
-	public static boolean isValidCharacter(char c) {
-		return ((Character.isLetter(c)) || (c == ' ') || (c == '\'') || (c == '"'));
-	}
+	private String name;
 }
 
 
